@@ -1,17 +1,22 @@
 # go-interpreter
 
-```
-$ brew install direnv
-$ cd ch01
-$ touch .envrc
-```
-
-Inside .envrc:
+Use docker
 
 ```
-export GOPATH=$(pwd)
+$ cd go-interpreter/ch01/src
+$ docker-compose up build
+$ docker-compose up
 ```
 
-Make sure you do not push .envrc to GitHub.
+To run tests
 
-You may have to configure GOPATH and GOROOT on your local machine, by editing bash_profile or bashrc.
+```
+(In another directory)
+$ docker exec -it containername /bin/bash
+(Inside docker container)
+/go/src# echo $GOPATH
+/go
+
+/go/src/monkey# go test ./lexer/
+ok  	monkey/lexer	0.006s
+```

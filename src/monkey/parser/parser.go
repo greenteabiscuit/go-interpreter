@@ -7,6 +7,7 @@ import (
 	"monkey/token"
 )
 
+// Parser ...
 type Parser struct {
 	l         *lexer.Lexer
 	curToken  token.Token
@@ -22,6 +23,7 @@ type (
 	infixParseFn  func(ast.Expression) ast.Expression
 )
 
+// New ...
 func New(l *lexer.Lexer) *Parser {
 	// *Parserを返さないといけないので&Parserで設定しないといけない、という感じで理解している
 	p := &Parser{
@@ -54,6 +56,7 @@ func (p *Parser) nextToken() {
 	p.peekToken = p.l.NextToken()
 }
 
+// ParseProgram ...
 func (p *Parser) ParseProgram() *ast.Program {
 	program := &ast.Program{}
 	program.Statements = []ast.Statement{}

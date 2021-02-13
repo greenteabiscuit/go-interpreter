@@ -2,6 +2,7 @@ package lexer
 
 import "monkey/token"
 
+// Lexer ...
 type Lexer struct {
 	input        string
 	position     int  //current position in input
@@ -9,6 +10,7 @@ type Lexer struct {
 	ch           byte // current char under examination
 }
 
+// New ...
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
 	l.readChar()
@@ -22,9 +24,10 @@ func (l *Lexer) readChar() {
 		l.ch = l.input[l.readPosition]
 	}
 	l.position = l.readPosition
-	l.readPosition += 1
+	l.readPosition++
 }
 
+// NextToken ...
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
@@ -130,7 +133,6 @@ func isDigit(ch byte) bool {
 func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
-	} else {
-		return l.input[l.readPosition]
 	}
+	return l.input[l.readPosition]
 }

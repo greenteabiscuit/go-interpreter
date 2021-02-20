@@ -6,5 +6,3 @@ FROM golang:latest
 WORKDIR /go/src
 # ホストのファイルをコンテナの作業ディレクトリに移行
 ADD . /go/src
-
-RUN go get github.com/greenteabiscuit/go-interpreter/src/monkey/

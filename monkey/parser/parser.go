@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/ast"
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/lexer"
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
+	"github.com/greenteabiscuit/go-interpreter/monkey/ast"
+	"github.com/greenteabiscuit/go-interpreter/monkey/lexer"
+	"github.com/greenteabiscuit/go-interpreter/monkey/token"
 )
 
 // Parser ...

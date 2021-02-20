@@ -3,7 +3,7 @@ package ast
 import (
 	"bytes"
 
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
+	"github.com/greenteabiscuit/go-interpreter/monkey/token"
 )
 
 // Node ...
@@ -227,6 +227,27 @@ func (ie *IfExpression) String() string {
 	if ie.Alternative != nil {
 		out.WriteString("else ")
 		out.WriteString(ie.Alternative.String())
+	}
+
+	return out.String()
+}
+
+// BlockStatement ...
+type BlockStatement struct {
+	Token      token.Token
+	Statements []Statement
+}
+
+func (bs *BlockStatement) statementNode() {}
+
+// TokenLiteral ...
+func (bs *BlockStatement) TokenLiteral() string { return bs.Token.Literal }
+
+// String ...
+func (bs *BlockStatement) String() string {
+	var out bytes.Buffer
+	for _, s := range bs.Statements {
+		out.WriteString(s.String())
 	}
 
 	return out.String()

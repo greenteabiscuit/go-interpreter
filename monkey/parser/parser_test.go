@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/ast"
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/lexer"
+	"github.com/greenteabiscuit/go-interpreter/monkey/ast"
+	"github.com/greenteabiscuit/go-interpreter/monkey/lexer"
 )
 
 func TestLetStatements(t *testing.T) {

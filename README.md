@@ -12,7 +12,7 @@ To import modules
 
 ```
 // in go directory of go container
-root@87214538eec5:/go# go get github.com/greenteabiscuit/go-interpreter/src/monkey/
+root@87214538eec5:/go# go get github.com/greenteabiscuit/go-interpreter/monkey/
 ```
 
 To run tests
@@ -24,14 +24,14 @@ $ docker exec -it containername /bin/bash
 /go/src# echo $GOPATH
 /go
 
-/go/src/monkey# go test ./lexer/
+/go/monkey# go test ./lexer/
 ok  	monkey/lexer	0.006s
 ```
 
 For REPL:
 
 ```
-/go/src/monkey# go run main.go
+/go/monkey# go run main.go
 Hello root! This is the Monkey programming language
 Feel free to type in commands
 >> let add = fn(x,y) {x+y};

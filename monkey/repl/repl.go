@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/lexer"
-	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
+	"github.com/greenteabiscuit/go-interpreter/monkey/lexer"
+	"github.com/greenteabiscuit/go-interpreter/monkey/token"
 )
 
 const PROMPT = ">> "

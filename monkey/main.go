@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"monkey/repl"
 	"os"
 	"os/user"
+
+	"github.com/greenteabiscuit/go-interpreter/monkey/repl"
 )
 
 func main() {

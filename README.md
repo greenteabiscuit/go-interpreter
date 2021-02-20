@@ -8,6 +8,13 @@ $ docker-compose up build
 $ docker-compose up
 ```
 
+To import modules
+
+```
+// in go directory of go container
+root@87214538eec5:/go# go get github.com/greenteabiscuit/go-interpreter/src/monkey/
+```
+
 To run tests
 
 ```

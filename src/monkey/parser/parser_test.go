@@ -2,9 +2,10 @@ package parser
 
 import (
 	"fmt"
-	"monkey/ast"
-	"monkey/lexer"
 	"testing"
+
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/ast"
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/lexer"
 )
 
 func TestLetStatements(t *testing.T) {

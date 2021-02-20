@@ -2,7 +2,8 @@ package ast
 
 import (
 	"bytes"
-	"monkey/token"
+
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
 )
 
 // Node ...

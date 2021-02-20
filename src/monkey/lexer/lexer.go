@@ -1,7 +1,7 @@
 package lexer
 
 import (
-	"monkey/token"
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
 )
 
 // Lexer ...

@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"monkey/ast"
-	"monkey/lexer"
-	"monkey/token"
 	"strconv"
+
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/ast"
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/lexer"
+	"github.com/greenteabiscuit/go-interpreter/src/monkey/token"
 )
 
 // Parser ...

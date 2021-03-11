@@ -23,6 +23,7 @@ func Eval(node ast.Node) object.Object {
 	case *ast.Boolean:
 		return nativeBoolToBooleanObject(node.Value)
 	case *ast.PrefixExpression:
+		right := Eval(node.Right)
 		return evalPrefixExpression(node.Operator, right)
 	}
 

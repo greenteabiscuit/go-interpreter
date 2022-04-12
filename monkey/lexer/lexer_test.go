@@ -8,7 +8,7 @@ import (
 func TestLexer_NextToken(t *testing.T) {
 	input := `let x = 1; let y = 2;
 	let add = fn(w, z) {
-		w + z;
+		return w + z;
 	}
 	!*/<>`
 	tests := []struct {
@@ -26,6 +26,11 @@ func TestLexer_NextToken(t *testing.T) {
 		{"=", token.ASSIGN, "="},
 		{"2", token.INT, "2"},
 		{"semicolon", token.SEMICOLON, ";"},
+		/*
+			let add = fn(w, z) {
+				return w + z;
+			}
+		*/
 		{"let", token.LET, "let"},
 		{"add", token.IDENT, "add"},
 		{"=", token.ASSIGN, "="},
@@ -36,6 +41,7 @@ func TestLexer_NextToken(t *testing.T) {
 		{"z", token.IDENT, "z"},
 		{")", token.RPAREN, ")"},
 		{"{", token.LBRACE, "{"},
+		{"return", token.RETURN, "return"},
 		{"w", token.IDENT, "w"},
 		{"+", token.PLUS, "+"},
 		{"z", token.IDENT, "z"},

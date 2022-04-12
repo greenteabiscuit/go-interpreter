@@ -6,7 +6,10 @@ import (
 )
 
 func TestLexer_NextToken(t *testing.T) {
-	input := "let x = 1; let y = 2;"
+	input := `let x = 1; let y = 2;
+	let add = fn(w, z) {
+		w + z;
+	}`
 	tests := []struct {
 		name            string
 		expectedType    token.TokenType
@@ -22,6 +25,21 @@ func TestLexer_NextToken(t *testing.T) {
 		{"=", token.ASSIGN, "="},
 		{"2", token.INT, "2"},
 		{"semicolon", token.SEMICOLON, ";"},
+		{"let", token.LET, "let"},
+		{"add", token.IDENT, "add"},
+		{"=", token.ASSIGN, "="},
+		{"fn", token.FUNCTION, "fn"},
+		{"(", token.LPAREN, "("},
+		{"w", token.IDENT, "w"},
+		{",", token.COMMA, ","},
+		{"z", token.IDENT, "z"},
+		{")", token.RPAREN, ")"},
+		{"{", token.LBRACE, "{"},
+		{"w", token.IDENT, "w"},
+		{"+", token.PLUS, "+"},
+		{"z", token.IDENT, "z"},
+		{"semicolon", token.SEMICOLON, ";"},
+		{"}", token.RBRACE, "}"},
 	}
 
 	l := New(input)

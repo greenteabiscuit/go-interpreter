@@ -6,14 +6,16 @@ import (
 )
 
 func TestLexer_NextToken(t *testing.T) {
-	input := "=+"
+	input := "let x = 1;"
 	tests := []struct {
 		name            string
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
-		{"equal", token.ASSIGN, "="},
-		{"plus", token.PLUS, "+"},
+		{"let", token.LET, "let"},
+		{"x", token.IDENT, "x"},
+		{"=", token.ASSIGN, "="},
+		{"1", token.INT, "1"},
 	}
 
 	l := New(input)

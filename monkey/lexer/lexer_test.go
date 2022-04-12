@@ -6,7 +6,7 @@ import (
 )
 
 func TestLexer_NextToken(t *testing.T) {
-	input := "let x = 1;"
+	input := "let x = 1; let y = 2;"
 	tests := []struct {
 		name            string
 		expectedType    token.TokenType
@@ -16,6 +16,12 @@ func TestLexer_NextToken(t *testing.T) {
 		{"x", token.IDENT, "x"},
 		{"=", token.ASSIGN, "="},
 		{"1", token.INT, "1"},
+		{"semicolon", token.SEMICOLON, ";"},
+		{"let", token.LET, "let"},
+		{"y", token.IDENT, "y"},
+		{"=", token.ASSIGN, "="},
+		{"2", token.INT, "2"},
+		{"semicolon", token.SEMICOLON, ";"},
 	}
 
 	l := New(input)

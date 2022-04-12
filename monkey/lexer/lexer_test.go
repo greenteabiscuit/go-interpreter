@@ -9,7 +9,8 @@ func TestLexer_NextToken(t *testing.T) {
 	input := `let x = 1; let y = 2;
 	let add = fn(w, z) {
 		w + z;
-	}`
+	}
+	!*/<>`
 	tests := []struct {
 		name            string
 		expectedType    token.TokenType
@@ -40,6 +41,12 @@ func TestLexer_NextToken(t *testing.T) {
 		{"z", token.IDENT, "z"},
 		{"semicolon", token.SEMICOLON, ";"},
 		{"}", token.RBRACE, "}"},
+		// !*/<>
+		{"bang", token.BANG, "!"},
+		{"asterisk", token.ASTERISK, "*"},
+		{"slash", token.SLASH, "/"},
+		{"less than", token.LT, "<"},
+		{"greater than", token.GT, ">"},
 	}
 
 	l := New(input)

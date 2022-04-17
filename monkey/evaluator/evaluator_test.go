@@ -189,3 +189,27 @@ func TestStringLiteral(t *testing.T) {
 		t.Errorf("String has wrong value")
 	}
 }
+
+func TestArrayIndexExpressions(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected interface{}
+	}{
+		{
+			input:    "[1, 2, 3][0]",
+			expected: 1,
+		},
+		{
+			input:    "[1, 2, 3][1 + 1]",
+			expected: 3,
+		},
+	}
+
+	for _, tt := range tests {
+		evaluated := testEval(tt.input)
+		integer, ok := tt.expected.(int)
+		if ok {
+			testIntegerObject(t, evaluated, int64(integer))
+		}
+	}
+}

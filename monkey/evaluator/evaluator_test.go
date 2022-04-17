@@ -33,7 +33,8 @@ func testEval(input string) object.Object {
 	l := lexer.New(input)
 	p := parser.New(l)
 	program := p.ParseProgram()
-	return Eval(program)
+	env := object.NewEnvironment()
+	return Eval(program, env)
 }
 
 func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
@@ -172,5 +173,19 @@ func TestErrorHandling(t *testing.T) {
 		if errObj.Message != tt.expectedMessage {
 			t.Errorf("wrong message")
 		}
+	}
+}
+
+func TestStringLiteral(t *testing.T) {
+	input := `"Hello World"`
+	evaluated := testEval(input)
+
+	str, ok := evaluated.(*object.String)
+	if !ok {
+		t.Fatalf("object is not String")
+	}
+
+	if str.Value != "Hello World" {
+		t.Errorf("String has wrong value")
 	}
 }

@@ -43,6 +43,8 @@ const (
 
 	EQ    = "=="
 	NOTEQ = "!="
+
+	STRING = "STRING"
 )
 
 var keywords = map[string]TokenType{

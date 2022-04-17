@@ -175,3 +175,17 @@ func TestErrorHandling(t *testing.T) {
 		}
 	}
 }
+
+func TestStringLiteral(t *testing.T) {
+	input := `"Hello World"`
+	evaluated := testEval(input)
+
+	str, ok := evaluated.(*object.String)
+	if !ok {
+		t.Fatalf("object is not String")
+	}
+
+	if str.Value != "Hello World" {
+		t.Errorf("String has wrong value")
+	}
+}

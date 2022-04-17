@@ -144,6 +144,23 @@ func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
 // String ...
 func (il *IntegerLiteral) String() string { return il.Token.Literal }
 
+type StringLiteral struct {
+	Token token.Token
+	Value string
+}
+
+func (s *StringLiteral) expressionNode() {
+
+}
+
+func (s *StringLiteral) TokenLiteral() string {
+	return s.Token.Literal
+}
+
+func (s *StringLiteral) String() string {
+	return s.Token.Literal
+}
+
 //PrefixExpression ...
 type PrefixExpression struct {
 	Token    token.Token // prefix token, e.g. !

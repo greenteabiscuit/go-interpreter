@@ -1,9 +1,21 @@
 package evaluator
 
-import "github.com/greenteabiscuit/go-interpreter/monkey/object"
+import (
+	"fmt"
+	"github.com/greenteabiscuit/go-interpreter/monkey/object"
+)
 
 var builtins = map[string]*object.Builtin{
-	"len": &object.Builtin{
+	"puts": {
+		Fn: func(args ...object.Object) object.Object {
+			for _, arg := range args {
+				fmt.Println(arg.Inspect())
+			}
+
+			return NULL
+		},
+	},
+	"len": {
 		Fn: func(args ...object.Object) object.Object {
 			if len(args) != 1 {
 				return newError("wrong number of arguments")

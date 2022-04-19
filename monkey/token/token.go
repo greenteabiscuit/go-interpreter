@@ -27,10 +27,12 @@ const (
 	COMMA     = ","
 	SEMICOLON = ";"
 
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN   = "("
+	RPAREN   = ")"
+	LBRACE   = "{"
+	RBRACE   = "}"
+	LBRACKET = "["
+	RBRACKET = "]"
 
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
@@ -43,6 +45,8 @@ const (
 
 	EQ    = "=="
 	NOTEQ = "!="
+
+	STRING = "STRING"
 )
 
 var keywords = map[string]TokenType{

@@ -13,7 +13,7 @@ import (
 // integrated testing
 type testVMCases struct {
 	input    string
-	expected string
+	expected interface{}
 }
 
 func parse(input string) *ast.Program {
@@ -67,7 +67,19 @@ func TestIntegerCases(t *testing.T) {
 	tests := []testVMCases{
 		{
 			input:    "1 + 2",
-			expected: "3",
+			expected: 3,
+		},
+		{
+			input:    "1 - 2",
+			expected: -1,
+		},
+		{
+			input:    "6 * 2",
+			expected: 12,
+		},
+		{
+			input:    "10 / 2",
+			expected: 5,
 		},
 	}
 	runVMTests(t, tests)

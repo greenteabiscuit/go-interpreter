@@ -51,6 +51,24 @@ func (v *VM) Run() error {
 			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
 			result := leftValue + rightValue
 			v.push(&object.Integer{Value: result})
+		case code.OpSub:
+			right := v.pop()
+			left := v.pop()
+			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
+			result := leftValue - rightValue
+			v.push(&object.Integer{Value: result})
+		case code.OpMul:
+			right := v.pop()
+			left := v.pop()
+			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
+			result := leftValue * rightValue
+			v.push(&object.Integer{Value: result})
+		case code.OpDiv:
+			right := v.pop()
+			left := v.pop()
+			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
+			result := leftValue / rightValue
+			v.push(&object.Integer{Value: result})
 		}
 	}
 	return nil

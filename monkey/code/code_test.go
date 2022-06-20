@@ -41,9 +41,9 @@ func TestInstructionsString(t *testing.T) {
 	}
 
 	expected := `0000 OpConstant 1
-	0003 OpConstant 2
-	0006 OpConstant 65535
-	`
+0003 OpConstant 2
+0006 OpConstant 65535
+`
 
 	concatted := Instructions{}
 	for _, ins := range instructions {
@@ -51,7 +51,7 @@ func TestInstructionsString(t *testing.T) {
 	}
 
 	if concatted.String() != expected {
-		t.Errorf("instructions wrongly formatted")
+		t.Errorf("instructions wrongly formatted, want %s, got %s", expected, concatted.String())
 	}
 }
 

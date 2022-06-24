@@ -84,6 +84,10 @@ func TestIntegerCases(t *testing.T) {
 			input:    "10 / 2",
 			expected: 5,
 		},
+		{
+			input:    "1 + (10 * 2)",
+			expected: 21,
+		},
 	}
 	runVMTests(t, tests)
 }

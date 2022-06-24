@@ -45,35 +45,51 @@ func (v *VM) Run() error {
 			if err := v.push(v.constants[constIndex]); err != nil {
 				return err
 			}
-		case code.OpAdd:
-			right := v.pop()
-			left := v.pop()
-			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
-			result := leftValue + rightValue
-			v.push(&object.Integer{Value: result})
-		case code.OpSub:
-			right := v.pop()
-			left := v.pop()
-			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
-			result := leftValue - rightValue
-			v.push(&object.Integer{Value: result})
-		case code.OpMul:
-			right := v.pop()
-			left := v.pop()
-			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
-			result := leftValue * rightValue
-			v.push(&object.Integer{Value: result})
-		case code.OpDiv:
-			right := v.pop()
-			left := v.pop()
-			leftValue, rightValue := left.(*object.Integer).Value, right.(*object.Integer).Value
-			result := leftValue / rightValue
-			v.push(&object.Integer{Value: result})
+		case code.OpAdd, code.OpSub, code.OpMul, code.OpDiv:
+			if err := v.executeBinaryOperation(op); err != nil {
+				return err
+			}
 		case code.OpPop:
 			v.pop()
 		}
 	}
 	return nil
+}
+
+func (v *VM) executeBinaryOperation(op code.Opcode) error {
+	right := v.pop()
+	left := v.pop()
+
+	rightType := right.Type()
+	leftType := left.Type()
+
+	if leftType == object.INTEGER_OBJ && rightType == object.INTEGER_OBJ {
+		return v.executeBinaryIntegerOperation(op, left, right)
+	}
+
+	return fmt.Errorf("unsupported types for binary operation: %s %s", leftType, rightType)
+}
+
+func (v *VM) executeBinaryIntegerOperation(op code.Opcode, left, right object.Object) error {
+	leftValue := left.(*object.Integer).Value
+	rightValue := right.(*object.Integer).Value
+
+	var result int64
+
+	switch op {
+	case code.OpAdd:
+		result = leftValue + rightValue
+	case code.OpSub:
+		result = leftValue - rightValue
+	case code.OpMul:
+		result = leftValue * rightValue
+	case code.OpDiv:
+		result = leftValue / rightValue
+	default:
+		return fmt.Errorf("unknown integer operator %d", op)
+	}
+
+	return v.push(&object.Integer{Value: result})
 }
 
 func (v *VM) push(obj object.Object) error {

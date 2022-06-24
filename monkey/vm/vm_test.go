@@ -37,7 +37,10 @@ func runVMTests(t *testing.T, tests []testVMCases) {
 			t.Fatalf("error reading bytecode in vm")
 		}
 
-		testExpectedObject(t, tt.expected, vm.StackTop())
+		//testExpectedObject(t, tt.expected, vm.StackTop())
+
+		stackElem := vm.LastPoppedStackElem()
+		testExpectedObject(t, tt.expected, stackElem)
 	}
 }
 
@@ -47,7 +50,7 @@ func testExpectedObject(t *testing.T, expected interface{}, actual object.Object
 	switch expected := expected.(type) {
 	case int:
 		if err := testIntegerObject(int64(expected), actual); err != nil {
-			t.Errorf("error with int")
+			t.Errorf("testIntegerObject failed: %s", err)
 		}
 	}
 }
